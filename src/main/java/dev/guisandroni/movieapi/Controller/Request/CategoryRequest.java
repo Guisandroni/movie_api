@@ -1,4 +1,8 @@
 package dev.guisandroni.movieapi.Controller.Request;
 
-public class CategoryRequest {
+import lombok.Builder;
+
+@Builder
+public record CategoryRequest(String title) {
+
 }
