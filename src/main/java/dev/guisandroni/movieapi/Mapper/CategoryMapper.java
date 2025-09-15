@@ -14,7 +14,7 @@ public class CategoryMapper {
     public static Category toCategory(CategoryRequest request){
         return Category
                 .builder()
-                .title(request.title())
+                .name(request.name())
                 .build();
     }
     
@@ -22,7 +22,7 @@ public class CategoryMapper {
     public static CategoryResponse toCategoryResponse(Category category){
         return CategoryResponse.builder()
                 .id(category.getId())
-                .title(category.getTitle())
+                .name(category.getName())
                 .build();
         
     }
