@@ -1,4 +1,7 @@
 package dev.guisandroni.movieapi.Controller.Request;
 
-public class LoginRequest {
+import lombok.Builder;
+
+@Builder
+public record LoginRequest (String email, String password){
 }

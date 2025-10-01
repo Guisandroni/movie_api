@@ -1,4 +1,8 @@
 package dev.guisandroni.movieapi.Controller.Response;
 
-public class LoginResponse {
+
+import lombok.Builder;
+
+@Builder
+public record LoginResponse (String token){
 }
