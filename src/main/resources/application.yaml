@@ -2,11 +2,10 @@ spring:
   application:
   name: movieapi
 
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/${DB_NAME}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/movieapi
+    username: movieapi
+    password: root
     driver-class-name: org.postgresql.Driver
   
   jpa:
