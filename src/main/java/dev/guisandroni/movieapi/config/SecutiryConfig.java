@@ -34,6 +34,9 @@ public class SecutiryConfig {
                                 .requestMatchers(HttpMethod.POST, "/movieapi/auth/login").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/movieapi/auth/users").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/movieapi/auth/users/{id}").authenticated()
+                                .requestMatchers(HttpMethod.GET, "/api/api-docs/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/swagger/**").permitAll()
+
 
                         .anyRequest().authenticated())
                 
