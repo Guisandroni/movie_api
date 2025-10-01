@@ -10,8 +10,8 @@ public record MovieResponse(
         Long id,
         String title,
         String description,
-        double rating,
         LocalDate release_date,
+        double rating,
         List<CategoryResponse> categories,
         List <StreamingResponse> streamings
 ) {
