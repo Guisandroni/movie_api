@@ -1,4 +1,7 @@
 package dev.guisandroni.movieapi.config;
 
-public record JWTUserData() {
+import lombok.Builder;
+
+@Builder
+public record JWTUserData(Long id, String name, String email) {
 }
