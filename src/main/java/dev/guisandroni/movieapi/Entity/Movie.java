@@ -40,11 +40,12 @@ public class Movie {
     private LocalDateTime createdAt;
     
     @CreationTimestamp
-    @Column(name = "updated_at")
+    @Column(name = "update_at")
     private LocalDateTime updatedAt;
     
     
     //relação entre as tabelas
+    
     
     @ManyToMany
     @JoinTable(
