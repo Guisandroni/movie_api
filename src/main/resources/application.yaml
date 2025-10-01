@@ -16,3 +16,6 @@ spring:
   flyway:
     enabled: true
     
+movieapi:
+  security:
+    secret: "kkasirmdsciurmdp12312321635g58saAAsd"
