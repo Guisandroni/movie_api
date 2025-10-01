@@ -30,9 +30,12 @@ public class SecutiryConfig {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(AuthorizeCallback -> AuthorizeCallback
-                .requestMatchers(HttpMethod.POST, "/movie/auth/register").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/movie/auth/login").permitAll()
-                                .anyRequest().authenticated())
+                                .requestMatchers(HttpMethod.POST, "/movieapi/auth/register").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/movieapi/auth/login").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/movieapi/auth/users").authenticated()
+                                .requestMatchers(HttpMethod.DELETE, "/movieapi/auth/users/{id}").authenticated()
+
+                        .anyRequest().authenticated())
                 
                 .addFilterBefore(secutiryFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

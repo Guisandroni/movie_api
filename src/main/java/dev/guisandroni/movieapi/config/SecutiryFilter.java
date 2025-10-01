@@ -6,7 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.security.core.token.TokenService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -16,7 +17,9 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class SecutiryFilter extends OncePerRequestFilter {
-
+    
+    private final TokenService tokenService;
+    
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
@@ -26,7 +29,17 @@ public class SecutiryFilter extends OncePerRequestFilter {
             
             //config jwt
            // Optional<JWTUserData>jwtUserData = TokenService.verifyToken(token);
-            
+
+
+            Optional<JWTUserData>jwtUserData = tokenService.verifyToken(token);
+
+            if(jwtUserData.isPresent()){
+                JWTUserData userData = jwtUserData.get();
+
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userData, null, null);
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            }
+
             filterChain.doFilter(request, response);
             
             
