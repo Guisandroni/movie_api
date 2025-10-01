@@ -1,17 +1,18 @@
 
 services:
-  postgres:
-    image: postgres:lastest
+  db:
+    image: postgres:latest
     container_name: movieapi
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USER: movieapi
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: movieapi
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "5432:5432"
     volumes:
-      - postgre_data:/var/lib/postgresql/data
-    restart: always
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
+  
+  
