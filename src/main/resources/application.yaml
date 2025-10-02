@@ -1,32 +1,31 @@
 spring:
   application:
-  name: movieapi
+    name: movieapi
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/movieapi
-    username: movieapi
-    password: root
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
-  
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-  
-  
+
   flyway:
     enabled: true
-    
+
 springdoc:
   api-docs:
     path: /api/api-docs
   swagger-ui:
     path: /swagger/index.html
-    
+
 movieapi:
   security:
-    secret: "kkasirmdsciurmdp12312321635g58saAAsd"
+    secret: "${JWT_SECRET}"
 
 tmdb:
   api:
     base-url: https://api.themoviedb.org/3
-    access-token: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNmQyNDczYjE3ZTU3YTQyYjk0M2YyMWEzMzNjMzMxNSIsIm5iZiI6MTczODY3NTIxNi4wOTYsInN1YiI6IjY3YTIxNDEwODBlNTkzZDVmZGUyY2QwOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FjPgHeDbZJF065oEdaD-nWQ07806TM1kdmU3VsQKFw4
+    access-token: ${TMDB_TOKEN}
