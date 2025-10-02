@@ -27,7 +27,9 @@ public class MovieService {
         return repository.findAll();
     }
     
-    
+    public Long findNumberOfMovies(){
+        return repository.count();
+    }
     
     public boolean existsMovieTitle(Movie movie){
         String movieTitle = movie.getTitle();

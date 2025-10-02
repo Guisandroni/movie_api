@@ -32,6 +32,11 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
     
+    @GetMapping("/countmovies")
+    public ResponseEntity<Long> getNumberOfMovies(){
+        return ResponseEntity.ok(service.findNumberOfMovies());
+    }
+    
     @PostMapping
     public ResponseEntity<MovieResponse> saveMovie(@RequestBody MovieRequest request){
         Movie newMovie = MovieMapper.toMovie(request);
@@ -70,7 +75,7 @@ public class MovieController {
 
 
 
-    //formato da url localhost:8080/movieapi/movie/search?category=1
+    //formato da url localhost:8080/movieapi/movie/search?category=1 
     
     @GetMapping("/search")
     public ResponseEntity<List<MovieResponse>> findByCategory(@RequestParam Long category){
