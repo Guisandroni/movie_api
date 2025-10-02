@@ -2,7 +2,7 @@
 
 ## Visão Geral do Projeto
 
-A Movie API é uma API RESTful desenvolvida em Java com Spring Boot para gerenciar informações sobre filmes, categorias e plataformas de streaming. A API permite que os usuários se registrem, se autentiquem e realizem operações CRUD (Criar, Ler, Atualizar e Excluir) nos recursos da API.
+A Movie API é uma API RESTful desenvolvida em Java com Spring Boot para gerenciar informações sobre filmes, categorias e plataformas de streaming. A API permite que os usuários se registrem, se autentiquem, realizem operações CRUD (Criar, Ler, Atualizar e Excluir) e importem dados de filmes do TMDb.
 
 ## Tecnologias Utilizadas
 
@@ -16,20 +16,29 @@ A Movie API é uma API RESTful desenvolvida em Java com Spring Boot para gerenci
 - **Maven**: Para gerenciamento de dependências.
 - **Lombok**: Para reduzir código boilerplate.
 - **JWT (JSON Web Tokens)**: Para autenticação baseada em token.
+- **SpringDoc OpenAPI (Swagger)**: Para documentação da API.
 
-## Dependências
+## Como Executar
 
-As principais dependências do projeto estão listadas no arquivo `pom.xml`:
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/movieapi.git
+   ```
+2. **Configure o banco de dados:**
+   - Crie um banco de dados PostgreSQL.
+   - Atualize as configurações do banco de dados no arquivo `src/main/resources/application.yaml`.
+   - Configure sua chave da API do TMDb no mesmo arquivo.
+3. **Execute a aplicação:**
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+A API estará disponível em `http://localhost:8080`.
 
-- `spring-boot-starter-data-jpa`
-- `spring-boot-starter-security`
-- `spring-boot-starter-validation`
-- `spring-boot-starter-web`
-- `flyway-core`
-- `flyway-database-postgresql`
-- `postgresql`
-- `lombok`
-- `java-jwt`
+## Documentação com Swagger
+
+A documentação completa e interativa da API está disponível através do Swagger UI. Após iniciar a aplicação, você pode acessá-la no seguinte endereço:
+
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 ## Endpoints da API
 
@@ -53,6 +62,7 @@ A seguir estão os endpoints disponíveis na API:
 ### Filmes (`/movieapi/movie`)
 
 - `GET /`: Retorna uma lista de todos os filmes.
+- `GET /numberMovies`: Retorna a quantidade total de filmes cadastrados.
 - `GET /{id}`: Retorna um filme por ID.
 - `POST /`: Cria um novo filme.
 - `PUT /{id}`: Atualiza um filme por ID.
@@ -67,17 +77,6 @@ A seguir estão os endpoints disponíveis na API:
 - `PUT /{id}`: Atualiza uma plataforma de streaming por ID.
 - `DELETE /{id}`: Deleta uma plataforma de streaming por ID.
 
-## Como Executar
+### Importação (`/movieapi/import`)
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/seu-usuario/movieapi.git
-   ```
-2. **Configure o banco de dados:**
-   - Crie um banco de dados PostgreSQL.
-   - Atualize as configurações do banco de dados no arquivo `src/main/resources/application.yaml`.
-3. **Execute a aplicação:**
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-A API estará disponível em `http://localhost:8080`.
+- `POST /movies`: Importa os filmes mais populares e suas categorias do TMDb (The Movie Database).
