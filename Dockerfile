@@ -13,7 +13,7 @@ COPY src ./src
 
 RUN mvn clean package -DskipTests
 
-FROM openjdk:21-jre
+FROM amazoncorretto:21-jre-headless
 
 WORKDIR /app
 
