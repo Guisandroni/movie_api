@@ -32,6 +32,7 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
     
+    @GetMapping("/countmovies")
     public ResponseEntity<Long> getNumberOfMovies(){
         return ResponseEntity.ok(service.findNumberOfMovies());
     }
