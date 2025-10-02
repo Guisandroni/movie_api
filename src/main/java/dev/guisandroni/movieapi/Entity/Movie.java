@@ -28,6 +28,7 @@ public class Movie {
     @Column(nullable = false)
     private String title;
     
+    @Column(columnDefinition = "TEXT")
     private String description;
     
     @Column(name = "release_date")
@@ -55,7 +56,8 @@ public class Movie {
             inverseJoinColumns = 
                     @JoinColumn(name = "category_id")
     )
-    private List<Category> categories;
+    @Builder.Default
+    private List<Category> categories = new java.util.ArrayList<>();
     
     @ManyToMany
     @JoinTable(
@@ -65,7 +67,8 @@ public class Movie {
             inverseJoinColumns = 
                     @JoinColumn(name = "streaming_id")
     )
-    private List<Streaming> streamings;
+    @Builder.Default
+    private List<Streaming> streamings = new java.util.ArrayList<>();
     
     
 }
