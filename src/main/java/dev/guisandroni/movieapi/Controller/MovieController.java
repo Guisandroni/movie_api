@@ -70,7 +70,7 @@ public class MovieController {
 
 
 
-    //formato da url localhost:8080/movieapi/movie/search?category=1
+    //formato da url localhost:8080/movieapi/movie/search?category=1 
     
     @GetMapping("/search")
     public ResponseEntity<List<MovieResponse>> findByCategory(@RequestParam Long category){
