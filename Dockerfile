@@ -1,19 +1,21 @@
 
-FROM archlinux:latest AS build
+FROM ubuntu:latest AS build
 
 WORKDIR /app
 
-RUN pacman -Syu --noconfirm && pacman -S --noconfirm openjdk-21-jdk maven
+RUN apt-get update
+RUN apt-get install openjdk-21-jdk -y
 
 COPY pom.xml .
 
+RUN apt-get install maven -y
 RUN mvn dependency:go-offline
 
 COPY src ./src
 
 RUN mvn clean package -DskipTests
 
-FROM amazoncorretto:21-jre-headless
+FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
