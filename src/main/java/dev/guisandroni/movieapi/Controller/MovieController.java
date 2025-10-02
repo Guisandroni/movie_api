@@ -32,6 +32,10 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
     
+    public ResponseEntity<Long> getNumberOfMovies(){
+        return ResponseEntity.ok(service.findNumberOfMovies());
+    }
+    
     @PostMapping
     public ResponseEntity<MovieResponse> saveMovie(@RequestBody MovieRequest request){
         Movie newMovie = MovieMapper.toMovie(request);
