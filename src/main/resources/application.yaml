@@ -25,3 +25,8 @@ springdoc:
 movieapi:
   security:
     secret: "kkasirmdsciurmdp12312321635g58saAAsd"
+
+tmdb:
+  api:
+    base-url: https://api.themoviedb.org/3
+    access-token: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNmQyNDczYjE3ZTU3YTQyYjk0M2YyMWEzMzNjMzMxNSIsIm5iZiI6MTczODY3NTIxNi4wOTYsInN1YiI6IjY3YTIxNDEwODBlNTkzZDVmZGUyY2QwOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FjPgHeDbZJF065oEdaD-nWQ07806TM1kdmU3VsQKFw4
