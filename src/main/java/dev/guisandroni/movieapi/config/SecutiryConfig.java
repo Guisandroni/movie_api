@@ -36,6 +36,7 @@ public class SecutiryConfig {
                                 .requestMatchers(HttpMethod.DELETE, "/movieapi/auth/users/{id}").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/api/api-docs/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/swagger/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/movieapi/movie/send-email/**").permitAll()
 
 
                         .anyRequest().authenticated())

@@ -5,7 +5,9 @@ import dev.guisandroni.movieapi.Controller.Request.MovieRequest;
 import dev.guisandroni.movieapi.Controller.Response.MovieResponse;
 import dev.guisandroni.movieapi.Entity.Movie;
 import dev.guisandroni.movieapi.Mapper.MovieMapper;
+import dev.guisandroni.movieapi.Service.EmailService;
 import dev.guisandroni.movieapi.Service.MovieService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.flywaydb.core.internal.publishing.PublishingConfigurationExtension;
@@ -21,7 +23,24 @@ import java.util.List;
 public class MovieController {
     
     private final MovieService service;
-    
+    private final EmailService emailService;
+
+
+    @PostMapping("/send-email")
+    public ResponseEntity<String> sendMoviesByEmail(@RequestParam String email) {
+        if (email == null || email.isEmpty()) {
+            return ResponseEntity.badRequest().body("O parâmetro 'email' é obrigatório.");
+        }
+
+        try {
+            List<Movie> movies = service.findAll();
+            emailService.sendMoviesEmail(email, movies);
+            return ResponseEntity.ok("E-mail com a lista de filmes enviado com sucesso para " + email);
+        } catch (MessagingException e) {
+            // Log the exception for debugging purposes
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao enviar o e-mail: " + e.getMessage());
+        }
+    }
     
     @GetMapping
     public ResponseEntity<List<MovieResponse>> getAllMovies(){

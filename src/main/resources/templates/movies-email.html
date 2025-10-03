@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seus Filmes Favoritos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .movie {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .movie:last-child {
+            border-bottom: none;
+        }
+        .movie-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .movie-details {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        Olá! Aqui está a sua lista de filmes.
+    </div>
+    <div th:if="${#lists.isEmpty(movies)}">
+        <p>Nenhum filme encontrado no momento.</p>
+    </div>
+    <div th:unless="${#lists.isEmpty(movies)}">
+        <div th:each="movie : ${movies}" class="movie">
+            <div class="movie-title" th:text="${movie.title}">Título do Filme</div>
+            <div class="movie-details">
+                <strong>Ano de Lançamento:</strong> <span th:text="${#temporals.format(movie.release_date, 'yyyy')}">1999</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

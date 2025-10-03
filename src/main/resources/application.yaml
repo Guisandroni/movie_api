@@ -2,6 +2,19 @@ spring:
   application:
     name: movieapi
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
   datasource:
     url: ${DB_URL}
     username: ${DB_USER}
@@ -23,7 +36,7 @@ springdoc:
 
 movieapi:
   security:
-    secret: "${JWT_SECRET}"
+    secret: ${JWT_SECRET}
 
 tmdb:
   api:
